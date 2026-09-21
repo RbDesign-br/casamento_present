@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agradecimento & PIX - Djane & Theo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1614;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .convite-container {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      aspect-ratio: 9 / 16;
+      background: url('convite.png') no-repeat center top;
+      background-size: 100% 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    /* Botão transparente sobre o botão de copiar da imagem */
+    .btn-copiar {
+      position: absolute;
+      top: 71.2%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 50px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .btn-copiar:active {
+      transform: translate(-50%, -50%) scale(0.96);
+    }
+
+    /* Aviso ao copiar */
+    #toast {
+      visibility: hidden;
+      min-width: 180px;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      text-align: center;
+      border-radius: 20px;
+      padding: 10px 18px;
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.95rem;
+      font-family: sans-serif;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="convite-container">
+    <button class="btn-copiar" onclick="copiarPix()"></button>
+    <div id="toast">Chave PIX copiada!</div>
+  </div>
+
+  <script>
+    function copiarPix() {
+      const chavePix = "85994400202";
+      navigator.clipboard.writeText(chavePix).then(() => {
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => { 
+          toast.className = toast.className.replace("show", ""); 
+        }, 2000);
+      }).catch(err => {
+        alert("Chave PIX: " + chavePix);
+      });
+    }
+  </script>
+
+</body>
+</html>
